@@ -3,10 +3,19 @@
     <li><a href='/#/links'>Links</a></li>
   </ul>
 </div>
-<form name='newLink' ng-controller='ShortenController'>
-  <input type='url' ng-model='link.url' placeholder='Enter URL' name='input' required/>
-  <button ng-disabled='!newLink.$valid' ng-click='addLink(newLink)'>Shorten</button>
-  <span class='error' ng-show='newLink.$error.url'>Invalid URL format.</span>
-</form>
+<div ng-controller='ShortenController'>
+  <form name='newLink'>
+    <input type='url' ng-model='link.url' placeholder='Enter URL' name='input' required/>
+    <button ng-disabled='!newLink.$valid' ng-click='addLink(newLink)'>Shorten</button>
+    <span class='error' ng-show='newLink.$error.url'>Invalid URL format.</span>
+  </form>
+
+  <div class='link' ng-model='link.data' ng-hide='!link.data'>
+    <span class='visits'>{{ link.data.visits }}</span>
+    <div class='title'>{{ link.data.title }}</div>
+    <div class='original'>{{ link.data.url }}</div>
+    <a class='' href='{{link.data.base_url + "/api/links/" + link.data.code}}'>{{ link.data.base_url + '/' + link.data.code }}</a>
+  </div>
+</div>
 
 
