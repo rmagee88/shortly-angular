@@ -5,11 +5,8 @@ angular.module('shortly.shorten', [])
 
   $scope.addLink = function(link) {
     if (link.$valid) {
-      $http({
-        method: 'POST',
-        url: '/api/links',
-        data: JSON.stringify($scope.link)
-      });
+      Links.addLink($scope.link);
     }
   };
+
 });
