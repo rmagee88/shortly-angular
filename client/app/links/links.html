@@ -4,5 +4,11 @@
   </ul>
 </div>
 <div id='container' ng-controller='LinksController'>
-  <p ng-repeat='link in data.links'>{{ link }}</p>
+  <div class='link' ng-repeat='link in data.links | orderBy:"visits":true'>
+    <span class='visits'>{{ link.visits }}</span>
+    <div class='title'>{{ link.title }}</div>
+    <div class='original'>{{ link.url }}</div>
+    <a class='' href='{{link.base_url + "/api/links/" + link.code}}'>{{ link.base_url + '/' + link.code }}</a>
+  </div>
 </div>
+
