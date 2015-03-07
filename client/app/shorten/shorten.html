@@ -3,9 +3,10 @@
     <li><a href='/#/links'>Links</a></li>
   </ul>
 </div>
-<div id='container' ng-controller='ShortenController'>
-  <input type='url' ng-model='link.url' placeholder='Enter URL' name='input'/>
-  <button ng-click='addLink()'>Shorten</button>
-</div>
+<form name='newLink' ng-controller='ShortenController'>
+  <input type='url' ng-model='link.url' placeholder='Enter URL' name='input' required/>
+  <button ng-disabled='!newLink.$valid' ng-click='addLink(newLink)'>Shorten</button>
+  <span class='error' ng-show='newLink.$error.url'>Invalid URL format.</span>
+</form>
 
 
