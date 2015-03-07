@@ -4,10 +4,15 @@ angular.module('shortly.shorten', [])
   $scope.link = {};
 
   $scope.addLink = function() {
-    $http({
-      method: 'POST',
-      url: '/api/links',
-      data: JSON.stringify($scope.link)
-    });
+    // janky validation
+    console.log('janky validation url: ', $scope.link.url);
+    if ($scope.link.url) {
+      $http({
+        method: 'POST',
+        url: '/api/links',
+        data: JSON.stringify($scope.link)
+      });
+    }
+
   };
 });
