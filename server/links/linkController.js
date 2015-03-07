@@ -23,7 +23,7 @@ module.exports = {
   allLinks: function (req, res, next) {
   var findAll = Q.nbind(Link.find, Link);
 
-  findAll({})
+  findAll({user_id : req.user._id})
     .then(function (links) {
       res.json(links);
     })
@@ -34,7 +34,8 @@ module.exports = {
 
   newLink: function (req, res, next) {
     var url = req.body.url;
-    console.log(req.body);
+    var user = req.user._id;
+
     if (!util.isValidUrl(url)) {
       return next(new Error('Not a valid url'));
     }
@@ -54,6 +55,7 @@ module.exports = {
         if (title) {
           var newLink = {
             url: url,
+            user_id: user,
             visits: 0,
             base_url: req.headers.origin,
             title: title

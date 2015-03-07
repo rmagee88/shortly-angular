@@ -2,12 +2,16 @@ var mongoose = require('mongoose'),
     crypto   = require('crypto');
 
 var LinkSchema = new mongoose.Schema({
- visits: Number,
- link: String,
- title: String,
- code: String,
- base_url: String,
- url: String
+  visits: Number,
+  link: String,
+  title: String,
+  code: String,
+  base_url: String,
+  url: String,
+  user_id: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'UserSchema'
+  }
 });
 
 var createSha = function(url) {
